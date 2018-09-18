@@ -1,4 +1,8 @@
-  [1m[35m (388.0ms)[0m  [1m[35mCREATE DATABASE "reddit_on_rails_development" ENCODING = 'unicode'[0m
+  [1m[35m (151.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "reddit_on_rails_development"[0m
   ↳ bin/rails:9
-  [1m[35m (249.2ms)[0m  [1m[35mCREATE DATABASE "reddit_on_rails_test" ENCODING = 'unicode'[0m
+  [1m[35m (126.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "reddit_on_rails_test"[0m
+  ↳ bin/rails:9
+  [1m[35m (400.1ms)[0m  [1m[35mCREATE DATABASE "reddit_on_rails_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (276.8ms)[0m  [1m[35mCREATE DATABASE "reddit_on_rails_test" ENCODING = 'unicode'[0m
   ↳ bin/rails:9
