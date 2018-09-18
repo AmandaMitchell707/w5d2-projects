@@ -11,6 +11,22 @@
 
   <body>
     <%= render 'shared/errors' %>
+    
+    <header>
+      <% if logged_in? %>
+        <form class="" action="<%= session_url %>" method="post">
+          <%= auth_token %>
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" name="" value="Sign Out">
+          
+        </form>
+        
+        <%= current_user.username %>
+      <% else %>
+        <a href="<%= new_session_url %>">Sign In</a>
+      <% end %>
+      
+    </header>
     <%= yield %>
   </body>
 </html>
