@@ -1,0 +1,12 @@
+<form class="" action="<%= type == :new ? users_url : session_url %>" method="post">
+  <%= auth_token %>
+  <label>username
+  <input type="text" name="user[username]" value="">
+  </label>
+  
+  <label>password
+  <input type="password" name="user[password]" value="">
+  </label>
+  
+  <input type="submit" name="" value="<%= type == :new ? "Sign Up" : "Sign In" %>">
+</form>
