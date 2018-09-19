@@ -1,2 +1,11 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<%= render 'display', post: @post %>
+
+<ul>
+  <% @post.subs.each do |sub| %>
+    <li><a href="<%= sub_url(sub) %>"><%= sub.title %></a></li>
+  <% end %>
+</ul>
+
+<a href="<%= edit_user_post_url(@post) %>">Edit this Post</a>
+
+<a href="<%= new_user_post_comment_url(current_user.id) %>">Add a Comment</a>

@@ -21,7 +21,7 @@
           
         </form>
         
-        <%= current_user.username %>
+        <a href="<%= user_url(current_user) %>"><%= current_user.username %></a> 
       <% else %>
         <a href="<%= new_session_url %>">Sign In</a>
       <% end %>

@@ -9,9 +9,10 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.author_id = params[:user_id]
+    @post.author_id = current_user.id
+    # debugger
     if @post.save
-      redirect_to sub_url(@post.sub_id)
+      redirect_to post_url(@post)
     else 
       now_errors(@post)
       render :new
@@ -23,23 +24,22 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    sub_id = @post.sub_id
     @post.destroy
-    redirect_to sub_url(sub_id)
+    redirect_to user_url(current_user)
   end
 
   def edit
     if @post.author_id == current_user.id
       render :edit
     else 
-      redirect_to sub_url(@post.sub_id)
+      redirect_to user_url(current_user)
     end 
   end
 
   def update
     if @post.author_id == current_user.id
       if @post.update(post_params)
-        redirect_to sub_url(@post.sub_id)
+        redirect_to post_url(@post)
       else 
         now_errors(@post)
         render :edit
@@ -50,7 +50,7 @@ class PostsController < ApplicationController
   private 
   
   def post_params
-    params.require(:post).permit(:title, :url, :content, :sub_id)
+    params.require(:post).permit(:title, :url, :content, sub_ids: [])
   end 
   
   def find_post

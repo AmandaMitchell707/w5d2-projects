@@ -11,6 +11,7 @@ ActiveRecord::Base.transaction do
   User.destroy_all
   Sub.destroy_all
   Post.destroy_all
+  PostSub.destroy_all
   
   austin = User.create!(username: 'atar97', password: 'starwars')
   amanda = User.create!(username: 'amandashow', password: 'starwars')
@@ -19,8 +20,18 @@ ActiveRecord::Base.transaction do
   squids = Sub.create!(title: 'Cephalopods', description: 'Ghostface Killas of the Sea', moderator_id: austin.id)
   
   posts = Post.create!([
-    {title: 'squid1', author_id: amanda.id, sub_id: squids.id},
-    {title: 'squid2', author_id: austin.id, sub_id: squids.id},
-    {title: 'Lamb', author_id: amanda.id, sub_id: baby_animals.id}
+    {title: 'squid1', author_id: amanda.id, content: 'content'},
+    {title: 'squid2', author_id: austin.id, content: 'content'},
+    {title: 'Lamb', author_id: amanda.id, content: 'content'},
+    {title: 'Baby Octopus', author_id: austin.id, content: 'content'}
+    ])
+    
+  
+  sub_post_connections = PostSub.create!([
+    {sub_id: squids.id, post_id: posts[0].id},
+    {sub_id: squids.id, post_id: posts[1].id},
+    {sub_id: baby_animals.id, post_id: posts[2].id},
+    {sub_id: baby_animals.id, post_id: posts[3].id},
+    {sub_id: squids.id, post_id: posts[3].id}
     ])
 end 

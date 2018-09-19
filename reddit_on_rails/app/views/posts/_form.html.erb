@@ -1,0 +1,29 @@
+<form action="<%= type == :edit ? user_post_url(post) : user_posts_url %>" method="post">
+  <% if type == :edit %>
+    <input type="hidden" name="_method" value="patch">
+  <% end %>
+  <%= auth_token %>
+  
+  <label>Title:
+    <input type="text" name="post[title]" value="<%= post.title %>">
+  </label>
+  
+  <label>URL:
+    <input type="text" name="post[url]" value="<%= post.url %>">
+  </label>
+  
+  <label>Content:
+    <textarea name="post[content]" rows="8" cols="80"><%= post.content %></textarea>
+  </label>
+  
+  <label>Subs:
+    <% Sub.all.each do |sub| %>
+    <label><%= sub.title %>
+      <input type="checkbox" name="post[sub_ids][]" value="<%= sub.id %>" <%= post.sub_ids.include?(sub.id) ? "checked" : "" %>>
+    </label>
+    <% end %>
+    <input type="hidden" name="post[sub_ids][]" value="">
+  </label>
+  
+  <input type="submit" name="" value=" <%= type == :edit ? "Update Post" : "Create Post" %>">
+</form>
